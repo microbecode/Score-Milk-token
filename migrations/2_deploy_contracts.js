@@ -1,6 +1,8 @@
-var art = artifacts.require("ERC20");
+var art = artifacts.require("OwnToken");
 module.exports = deployer => {
     deployer.deploy(art, 
-        "a", "b"
+        123,
+        "a",
+        "b"
         );
 };
