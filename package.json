@@ -1,0 +1,31 @@
+{
+  "name": "scoremilk",
+  "version": "1.0.0",
+  "description": "Smart Contracts for Score Milk project",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo not done"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microbecode/ScoreMilk.git"
+  },
+  "author": "Lauri Peltonen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/microbecode/ScoreMilk/issues"
+  },
+  "homepage": "https://github.com/microbecode/ScoreMilk#readme",
+  "devDependencies": {
+    "@openzeppelin/cli": "^2.8.2",
+    "@openzeppelin/test-helpers": "^0.5.6",
+    "chai": "^4.2.0",
+    "mocha": "^8.1.3"
+  },
+  "dependencies": {
+    "openzeppelin-solidity": "^3.2.0"
+  }
+}
