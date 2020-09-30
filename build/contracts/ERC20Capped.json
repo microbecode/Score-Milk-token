@@ -781,7 +781,7 @@
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1297,
+                        "referencedDeclaration": 1295,
                         "src": "950:5:9",
                         "typeDescriptions": {
                           "typeIdentifier": "t_super$_ERC20Capped_$1127",
@@ -1717,7 +1717,7 @@
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1297,
+                        "referencedDeclaration": 1295,
                         "src": "950:5:9",
                         "typeDescriptions": {
                           "typeIdentifier": "t_super$_ERC20Capped_$1127",
@@ -2181,7 +2181,7 @@
   },
   "networks": {},
   "schemaVersion": "3.2.5",
-  "updatedAt": "2020-09-30T18:41:28.876Z",
+  "updatedAt": "2020-09-30T18:52:41.995Z",
   "devdoc": {
     "details": "Extension of {ERC20} that adds a cap to the supply of tokens.",
     "methods": {
