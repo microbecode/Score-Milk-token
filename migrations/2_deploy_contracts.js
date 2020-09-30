@@ -1,4 +1,4 @@
-var art = artifacts.require("OwnToken");
+var art = artifacts.require("MilkToken");
 module.exports = deployer => {
     deployer.deploy(art, 
         123,
