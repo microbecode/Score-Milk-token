@@ -25,9 +25,16 @@ The token is an ERC20 compliant ( https://theethereum.wiki/w/index.php/ERC20_Tok
 
 - Standard ERC20 functionality
 - Owner functionality
-- Minting functionality (available for owner)
-- Burning functionality (available for owner)
+  - Contract deployer is the owner
+  - Owner can change the owner to be someone else
+- Minting functionality
+  - Only available to the contract owner
+  - Mints new tokens to the owner's address
+- Burning functionality
+  - Only available to the contract owner
+  - Can only burn own tokens
 - Maximum token amount cap
+    - The cap can't be breached with minting
 
 ## Deployment
 
@@ -38,6 +45,15 @@ As mentioned above the contracts can't be deployed to Tron network with the acco
 All relevant unit tests from OpenZeppelin are included.
 On top of these, custom unit tests are added for the custom token functionality.
 
+# Considerations for future needs
+
+## Multiple access levels
+In the future the token contract may need multiple levels of access. This is not directly possible with the current functionality but a separate user contract can be created which delegates access to the token functionality.
+
+## Upgradable contracts
+
+All contracts are immutable by nature. However, contracts can be made upgradable so part of their functionality can be upgraded by deploying a new contract.
+
 # Configuration
 
 The token (MilkToken.sol) needs to be configured upon deployment. The following arguments need to be given to the token upon deployment:
@@ -47,6 +63,7 @@ The token (MilkToken.sol) needs to be configured upon deployment. The following 
 - string symbol: symbol for the token (shorthand for the name)
 
 The token has 18 decimal places.
+
 
 
 
