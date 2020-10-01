@@ -36,10 +36,6 @@ The token is an ERC20 compliant ( https://theethereum.wiki/w/index.php/ERC20_Tok
 - Maximum token amount cap
     - The cap can't be breached with minting
 
-## Deployment
-
-As mentioned above the contracts can't be deployed to Tron network with the accompanied configurations. New Tron-specific configurations are needed.
-
 ## Unit tests
 
 All relevant unit tests from OpenZeppelin are included.
@@ -57,12 +53,18 @@ All contracts are immutable by nature. However, contracts can be made upgradable
 # Configuration
 
 The token (MilkToken.sol) needs to be configured upon deployment. The following arguments need to be given to the token upon deployment:
-- uint256 initialAmount: the initial amount of tokens to create upon deployment
-- uint256 cap: the maximum amount of tokens that can exist
-- string name: name for the token
-- string symbol: symbol for the token (shorthand for the name)
+- uint256 `initialAmount`: the initial amount of tokens to create upon deployment
+- uint256 `cap`: the maximum amount of tokens that can exist
+- string `name`: name for the token
+- string `symbol`: symbol for the token (shorthand for the name)
 
 The token has 18 decimal places.
+
+## Deployment
+
+As mentioned above the contracts can't be deployed to Tron network with the accompanied configurations. New Tron-specific configurations are needed.
+
+Probably the hardest thing to configure is the amount of tokens needed. If, for example, the maximum amount of tokens users see is 100 million then the contract can't be simply deployed with `initialAmount` of 100 million. The token has 18 decimal places so you need to deploy the token with 100 000 000 * (10 ^ 18) as `initialAmount`. You can read more about this distinction for example here: https://ethereum.stackexchange.com/a/72481/31933
 
 
 
