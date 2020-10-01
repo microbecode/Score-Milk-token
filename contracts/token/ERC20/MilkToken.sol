@@ -7,9 +7,9 @@ import "./ERC20.sol";
 import "../../access/Ownable.sol";
 
 contract MilkToken is ERC20Capped, Ownable {
-    constructor(uint256 initialAmount, uint256 cap, string memory _name, string memory _symbol) 
+    constructor(uint256 initialAmount, uint256 cap, string memory name, string memory symbol) 
 	ERC20Capped(cap) 
-    ERC20(_name, _symbol)
+    ERC20(name, symbol)
 	public
 	{
 		require(initialAmount <= cap, "Cap reached");

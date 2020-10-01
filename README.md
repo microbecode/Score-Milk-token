@@ -8,7 +8,7 @@ Currently only a basic ERC20 (or TRC20) token functionality is implemented.
 This repository is implemented with Solidity on top of an Ethereum framework. The actual deployment of the contracts will happen to Tron network - the deployment settings in this repository will not be valid for Tron.
 
 Used technologies in this repository:
-- Solidity 0.6.2 for contracts
+- Solidity 0.6.0 for contracts
 - JavaScript Mocha for unit tests
 - Truffle for running tests and and (Ethereum) deployment
 - Ganache as local blockchain (although no automation for it)
