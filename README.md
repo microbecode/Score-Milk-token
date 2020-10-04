@@ -36,6 +36,12 @@ The token is an ERC20 compliant ( https://theethereum.wiki/w/index.php/ERC20_Tok
 - Maximum token amount cap
     - The cap can't be breached with minting
 
+### Burn requirement
+
+Since the token contract allows to only burn your own tokens it imposes certain restrictions.
+
+Token holders should only be able to receive their tokens when it is 100 % certain that the said tokens will not need to be burned. For example staking rewards can be given to the user only when it's certain that they don't meet the "first day burn" nor the "early withdrawal burn" requirements.
+
 ## Unit tests
 
 All relevant unit tests from OpenZeppelin are included.
@@ -48,7 +54,7 @@ In the future the token contract may need multiple levels of access. This is not
 
 ## Upgradable contracts
 
-All contracts are immutable by nature. However, contracts can be made upgradable so part of their functionality can be upgraded by deploying a new contract.
+All contracts are immutable by nature. However, contracts can be made upgradable so part of their functionality can be upgraded by deploying a new contract. This process will need to be thought through carefully as it will change the nature of infrastructure.
 
 # Configuration
 
