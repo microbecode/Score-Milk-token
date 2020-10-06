@@ -32,13 +32,13 @@ function shouldBehaveLikePublicRole (authorized, otherAuthorized, [other], rolen
       expect(await this.contract[`is${rolename}`](other)).to.equal(false);
     });
 
-    if (manager === undefined) { // Managed roles are only assigned by the manager, and none are set at construction
+   /*  if (manager === undefined) { // Managed roles are only assigned by the manager, and none are set at construction
       it('emits events during construction', async function () {
         await expectEvent.inConstruction(this.contract, `${rolename}Added`, {
           account: authorized,
         });
       });
-    }
+    } */
 
     it('reverts when querying roles for the null account', async function () {
       await expectRevert(this.contract[`is${rolename}`](ZERO_ADDRESS),
