@@ -1,17 +1,10 @@
-// SPDX-License-Identifier: MIT
-
-pragma solidity ^0.6.0;
+pragma solidity ^0.5.0;
 
 import "../token/ERC20/ERC20.sol";
 
 // mock class using ERC20
 contract ERC20Mock is ERC20 {
-    constructor (
-        string memory name,
-        string memory symbol,
-        address initialAccount,
-        uint256 initialBalance
-    ) public payable ERC20(name, symbol) {
+    constructor (address initialAccount, uint256 initialBalance) public {
         _mint(initialAccount, initialBalance);
     }
 
@@ -21,6 +14,10 @@ contract ERC20Mock is ERC20 {
 
     function burn(address account, uint256 amount) public {
         _burn(account, amount);
+    }
+
+    function burnFrom(address account, uint256 amount) public {
+        _burnFrom(account, amount);
     }
 
     function transferInternal(address from, address to, uint256 value) public {

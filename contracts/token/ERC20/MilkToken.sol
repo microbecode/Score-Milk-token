@@ -1,26 +1,16 @@
-// SPDX-License-Identifier: MIT
-
-pragma solidity ^0.6.0;
+pragma solidity ^0.5.0;
 
 import "./ERC20Capped.sol";
 import "./ERC20.sol";
-import "../../access/Ownable.sol";
+import "./ERC20Detailed.sol";
 
-contract MilkToken is ERC20Capped, Ownable {
+contract MilkToken is ERC20Capped, ERC20Detailed {
     constructor(uint256 initialAmount, uint256 cap, string memory name, string memory symbol) 
 	ERC20Capped(cap) 
-    ERC20(name, symbol)
+    ERC20Detailed(name, symbol, 18)
 	public
 	{
 		require(initialAmount <= cap, "Cap reached");
-		_mint(msg.sender, initialAmount);
-	}
-
-	function mint(uint amount) onlyOwner public {
-		_mint(msg.sender, amount);
-	}
-
-	function burn(uint amount) onlyOwner public {
-		_burn(msg.sender, amount);
+		mint(msg.sender, initialAmount);
 	}
 }

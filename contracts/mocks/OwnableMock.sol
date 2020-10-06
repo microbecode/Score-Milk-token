@@ -1,7 +1,7 @@
-// SPDX-License-Identifier: MIT
+pragma solidity ^0.5.0;
 
-pragma solidity ^0.6.0;
+import "../ownership/Ownable.sol";
 
-import "../access/Ownable.sol";
-
-contract OwnableMock is Ownable { }
+contract OwnableMock is Ownable {
+    // solhint-disable-previous-line no-empty-blocks
+}
