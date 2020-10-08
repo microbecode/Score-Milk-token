@@ -32,7 +32,8 @@ function shouldBehaveLikePublicRole (authorized, otherAuthorized, [other], rolen
       expect(await this.contract[`is${rolename}`](other)).to.equal(false);
     });
 
-   /*  if (manager === undefined) { // Managed roles are only assigned by the manager, and none are set at construction
+   /*  Unable to get event emission tests to work. The events are emitted but not caught in tests
+   if (manager === undefined) { // Managed roles are only assigned by the manager, and none are set at construction
       it('emits events during construction', async function () {
         await expectEvent.inConstruction(this.contract, `${rolename}Added`, {
           account: authorized,

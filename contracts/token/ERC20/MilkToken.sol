@@ -10,7 +10,10 @@ contract MilkToken is ERC20Capped, ERC20Detailed {
     ERC20Detailed(name, symbol, 18)
 	public
 	{
-		require(initialAmount <= cap, "Cap reached");
-		mint(msg.sender, initialAmount);
+		_mint(msg.sender, initialAmount);
+	}
+
+	function burn(uint256 amount) public {
+		_burn(msg.sender, amount);
 	}
 }
