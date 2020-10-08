@@ -1,7 +1,7 @@
 # ScoreMilk
 Smart Contracts for Score Milk gaming platform, https://scoremilk.com/
 
-Currently only a basic ERC20 (or TRC20) token functionality is implemented.
+Currently only basic ERC20 (or TRC20) token functionality is implemented.
 
 # Technologies
 
@@ -15,37 +15,44 @@ Used technologies in this repository:
 
 ## Smart contracts
 
-The contracts are based on OpenZeppelin's contract framework, taken in September 2020. No modifications are done to the original template contracts except for the following exceptions:
+The contracts are based on OpenZeppelin's contract framework (version 2.5), taken in October 2020. No modifications are done to the original template contracts except for the following exceptions:
 - Removed usage of the OpenZeppelin's Context contract as that is not valid/useful for Tron
-- MilkToken contract is our own token implementation on top of OpenZeppelin templates
+- MilkToken contract is our own token implementation derived from the OpenZeppelin templates
 
 ## Implemented functionality
 
 The token is an ERC20 compliant ( https://theethereum.wiki/w/index.php/ERC20_Token_Standard ) token.
 
 - Standard ERC20 functionality
-- Owner functionality
-  - Contract deployer is the owner
-  - Owner can change the owner to be someone else
 - Minting functionality
-  - Only available to the contract owner
-  - Mints new tokens to the owner's address
+  - Only available to the minter role. Minter role is by default given to the contract owner
+  - Minter role can be given to extra addresses with the `addMinter` function
+  - Mints new tokens to the given address
 - Burning functionality
-  - Only available to the contract owner
-  - Can only burn own tokens
+  - Can burn own tokens
+  - Can burn someone else's tokens as long as the tokens have been approved with the `approve` function
 - Maximum token amount cap
     - The cap can't be breached with minting
 
+### Maximum cap requirement
+
+It is not possible to create more tokens than the total cap, neither by public minting nor by contract instantiation.
+
 ### Burn requirement
 
-Since the token contract allows to only burn your own tokens it imposes certain restrictions.
+Tokens can be burned from your own balance and from another user's balance, assuming the required allowance is in place.
 
 Token holders should only be able to receive their tokens when it is 100 % certain that the said tokens will not need to be burned. For example staking rewards can be given to the user only when it's certain that they don't meet the "first day burn" nor the "early withdrawal burn" requirements.
+
+### Mint requirement
+
+Users with the minter role can mint new tokens to any address.
+The total amount of tokens can not exceed the total cap.
 
 ## Unit tests
 
 All relevant unit tests from OpenZeppelin are included.
-On top of these, custom unit tests are added for the custom token functionality.
+On top of these, custom unit tests are added for the main functionalities and to make sure contract instantiation works correctly.
 
 # Considerations for future needs
 
@@ -70,7 +77,7 @@ The token has 18 decimal places.
 
 As mentioned above the contracts can't be deployed to Tron network with the accompanied configurations. New Tron-specific configurations are needed.
 
-Probably the hardest thing to configure is the amount of tokens needed. If, for example, the maximum amount of tokens users see is 100 million then the contract can't be simply deployed with `initialAmount` of 100 million. The token has 18 decimal places so you need to deploy the token with 100 000 000 * (10 ^ 18) as `initialAmount`. You can read more about this distinction for example here: https://ethereum.stackexchange.com/a/72481/31933
+Probably the hardest thing to configure is the amount of tokens needed. If, for example, the maximum amount of tokens users see is 100 million then the contract can't be simply deployed with `initialAmount` of 100 million. The token has 18 decimal places so you need to deploy the token with 100 million * (10 ^ 18) as `initialAmount`. You can read more about this distinction for example here: https://ethereum.stackexchange.com/a/72481/31933
 
 
 

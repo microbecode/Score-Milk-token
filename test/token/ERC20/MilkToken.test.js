@@ -19,7 +19,7 @@ describe('MilkToken', function () {
     this.token = await tokenContr.new(initialSupply, initialCap, 'a', 'b', { from: initialHolder });
   });
 
-   it('has the right initial amount', async function () {
+  it('has the right initial amount', async function () {
     expect(await this.token.totalSupply()).to.be.bignumber.equal(initialSupply);
   });
 
@@ -36,7 +36,7 @@ describe('MilkToken', function () {
     expect(await this.token.balanceOf(initialHolder)).to.be.bignumber.equal(initialSupply.add(mintAmount));
   });
 
-   it('can\'t be minted over the cap', async function () {
+  it('can\'t be minted over the cap', async function () {
     await this.token.mint(initialHolder, mintAmount, { from: initialHolder });
 
     await expectRevert(this.token.mint(initialHolder, mintAmount, { from: initialHolder }),
@@ -46,16 +46,24 @@ describe('MilkToken', function () {
     expect(await this.token.balanceOf(initialHolder)).to.be.bignumber.equal(initialSupply.add(mintAmount));
   });
 
-   it('can\t be minted without access', async function () {
+  it('can\t be minted without access', async function () {
 
     await expectRevert(this.token.mint(initialHolder, mintAmount, { from: anotherAccount }),
       'MinterRole: caller does not have the Minter role -- Reason given: MinterRole: caller does not have the Minter role.'
     );
-  }); 
+  });
 
   it('can be burned', async function () {
     await this.token.burn(burnAmount, { from: initialHolder });
     expect(await this.token.balanceOf(initialHolder)).to.be.bignumber.equal(initialSupply.sub(burnAmount));
+  });
+
+  it('can\'t be burned from another account without approval', async function () {
+    await this.token.mint(anotherAccount, mintAmount, { from: initialHolder });
+    await expectRevert(this.token.burnFrom(anotherAccount, burnAmount, { from: initialHolder }),
+      'ERC20: burn amount exceeds allowance -- Reason given: ERC20: burn amount exceeds allowance.'
+    );
+    expect(await this.token.balanceOf(anotherAccount)).to.be.bignumber.equal(mintAmount);
   });
 
 });
