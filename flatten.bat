@@ -1,0 +1,1 @@
+truffle-flattener contracts/token/ERC20/MilkToken.sol  --output contracts/ScoreMilkFlat.sol.txt

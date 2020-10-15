@@ -79,6 +79,9 @@ As mentioned above the contracts can't be deployed to Tron network with the acco
 
 Probably the hardest thing to configure is the amount of tokens needed. If, for example, the maximum amount of tokens users see is 100 million then the contract can't be simply deployed with `initialAmount` of 100 million. The token has 18 decimal places so you need to deploy the token with 100 million * (10 ^ 18) as `initialAmount`. You can read more about this distinction for example here: https://ethereum.stackexchange.com/a/72481/31933
 
+## Verifying contract
+
+If the contract needs to be verified in some external service it's easiest to create a flattened file of all of the contracts. This can be done with package `truffle-flattener` and there is a ready-made Windows batch file to create it (`flatten.bat`). The resulting flat file is then available at contracts/ScoreMilkFlat.sol.txt (not using the direct .sol suffix because it would cause conflicting contract names)
 
 
 
